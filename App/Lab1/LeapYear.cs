@@ -4,7 +4,6 @@ public static class LeapYear
 {
     public static bool IsLeapYear(int year) 
     {
-        //TODO напишите тут свое решение
-        throw new NotImplementedException();
+        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
     }
 }
