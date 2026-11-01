@@ -69,8 +69,7 @@ public class Frequency
         var bestWord = result[prefix];
         var bestCount = counts[bestWord];
 
-        if (count > bestCount
-            || (count == bestCount && string.CompareOrdinal(word, bestWord) < 0))
+        if (count > bestCount || (count == bestCount && string.CompareOrdinal(word, bestWord) < 0))
             result[prefix] = word;
     }
 }

@@ -23,7 +23,7 @@ public class FrequencyTests
     [TestCase("ABC abc.", new[] { "abc abc" })]
     [TestCase("a b. c", new[] { "a b" })]
     [TestCase("a. b c", new[] { "b c" })]
-    public void Tests(string inputText, string[] dictionaryLines)
+    public void TestPasses_When_Result_Correct(string inputText, string[] dictionaryLines)
     {
         var result = Frequency.FrequencyAnalysis(inputText);
         var actualLines = new List<string>();

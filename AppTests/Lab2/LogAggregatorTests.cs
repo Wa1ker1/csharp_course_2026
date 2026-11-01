@@ -1,4 +1,3 @@
-
 using App.Lab2;
 
 namespace AppTests.Lab2;
@@ -6,7 +5,7 @@ namespace AppTests.Lab2;
 public class LogAggregatorTests
 {
     [Test]
-    public void MergeLogs_OnlyGarbage_ReturnsEmptyString()
+    public void OnlyGarbage_ReturnsEmptyString()
     {
         var result = LogAggregator.MergeLogs("garbage", "[invalid]", null);
 
@@ -14,7 +13,7 @@ public class LogAggregatorTests
     }
 
     [Test]
-    public void MergeLogs_SingleGroup_SortsByTime()
+    public void SingleGroup_SortsByTime()
     {
         var result = LogAggregator.MergeLogs(
             "[2023-10-25 14:05:02] [trace-A] AuthService: Second",
@@ -32,7 +31,7 @@ public class LogAggregatorTests
     }
 
     [Test]
-    public void MergeLogs_EmptyInput_ReturnsEmptyString()
+    public void EmptyInput_ReturnsEmptyString()
     {
         Assert.That(LogAggregator.MergeLogs(), Is.Empty);
         Assert.That(LogAggregator.MergeLogs((string[])null), Is.Empty);
@@ -49,7 +48,7 @@ public class LogAggregatorTests
     [TestCase("[2024-01-01 12:60:00] [A] Auth: Test")]
     [TestCase("[2100-02-29 12:00:00] [A] Auth: Test")]
     [TestCase("[2024-01-01 12:00:00] [] Auth: Test")]
-    public void MergeLogs_InvalidInput_ReturnsEmptyString(string line)
+    public void InvalidInput_ReturnsEmptyString(string line)
     {
         var result = LogAggregator.MergeLogs(line);
 
@@ -59,7 +58,7 @@ public class LogAggregatorTests
     [TestCase("2024-02-29 23:59:59")]
     [TestCase("2000-02-29 00:00:00")]
     [TestCase("2024-12-31 23:59:59")]
-    public void MergeLogs_ValidDate_ReturnsLog(string timestamp)
+    public void ValidDate_ReturnsLog(string timestamp)
     {
         var line = "[" + timestamp + "] [A] Auth: Test";
         var result = LogAggregator.MergeLogs(line);
@@ -74,7 +73,7 @@ public class LogAggregatorTests
     }
 
     [Test]
-    public void MergeLogs_MultipleGroups_SortsCorrectly()
+    public void MultipleGroups_SortsCorrectly()
     {
         var result = LogAggregator.MergeLogs(
             "[2023-10-25 14:05:03] [A] Auth: Later",
@@ -96,7 +95,7 @@ public class LogAggregatorTests
     }
 
     [Test]
-    public void MergeLogs_SameTime_SortsByServiceName()
+    public void SameTime_SortsByServiceName()
     {
         var result = LogAggregator.MergeLogs(
             "[2023-10-25 14:05:00] [A] Zeta: Last",
@@ -114,7 +113,7 @@ public class LogAggregatorTests
     }
 
     [Test]
-    public void MergeLogs_DuplicatesAndGarbage_PreservesValidLogs()
+    public void DuplicatesAndGarbage_PreservesValidLogs()
     {
         var line = "[2023-10-25 14:05:00] [A] Auth: Hello";
         var result = LogAggregator.MergeLogs(line, "garbage", line);

@@ -31,8 +31,7 @@ public class LogAggregator
                 traceIds.Add(traceId);
             }
 
-            var formattedLine = line.Substring(0, 21)
-                + line.Substring(traceEnd + 1);
+            var formattedLine = line.Substring(0, 21)  + line.Substring(traceEnd + 1);
 
             groups[traceId].Add(formattedLine);
         }
@@ -164,8 +163,7 @@ public class LogAggregator
 
         if (month == 2)
         {
-            var isLeapYear = year % 400 == 0
-                || (year % 4 == 0 && year % 100 != 0);
+            var isLeapYear = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 
             daysInMonth = isLeapYear ? 29 : 28;
         }

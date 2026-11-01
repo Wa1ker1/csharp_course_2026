@@ -14,7 +14,7 @@ public class StackMachineTests
     [TestCase(new[] { "push Hello", "pop 0" }, "Hello")]
     [TestCase(new[] { "push Hello World", "pop 6" }, "Hello")]
     [TestCase(new string[0], "")]
-    public void StackTests(string[] codeLines, string expected)
+    public void TestPasses_When_Result_Correct(string[] codeLines, string expected)
     {
         var actual = StackMachine.CalculateString(codeLines);
 
